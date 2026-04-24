@@ -1,0 +1,20 @@
+﻿{
+    "key":  {
+                "C":  {
+                          "item":  "tiered_chests:wood_barrel"
+                      },
+                "M":  {
+                          "item":  "minecraft:copper_ingot"
+                      }
+            },
+    "pattern":  [
+                    "MMM",
+                    "MCM",
+                    "MMM"
+                ],
+    "result":  {
+                   "count":  1,
+                   "id":  "tiered_chests:copper_barrel"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

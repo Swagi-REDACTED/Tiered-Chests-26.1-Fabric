@@ -1,0 +1,21 @@
+﻿{
+    "key":  {
+                "#":  {
+                          "tag":  "minecraft:planks"
+                      },
+                "C":  {
+                          "item":  "minecraft:barrel"
+                      }
+            },
+    "category":  "misc",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "result":  {
+                   "count":  1,
+                   "item":  "tiered_chests:wood_barrel"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

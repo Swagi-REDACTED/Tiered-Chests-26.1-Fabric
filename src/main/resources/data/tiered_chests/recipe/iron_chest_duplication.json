@@ -1,0 +1,20 @@
+﻿{
+    "key":  {
+                "C":  {
+                          "item":  "tiered_chests:iron_chest"
+                      },
+                "M":  {
+                          "item":  "minecraft:iron_ingot"
+                      }
+            },
+    "pattern":  [
+                    "MMM",
+                    "MCM",
+                    "MMM"
+                ],
+    "result":  {
+                   "count":  2,
+                   "id":  "tiered_chests:iron_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

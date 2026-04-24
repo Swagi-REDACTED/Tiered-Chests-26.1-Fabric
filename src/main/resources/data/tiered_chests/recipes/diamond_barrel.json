@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MPM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:diamond"
+    },
+    "P": {
+      "item": "tiered_barrels:golden_barrel"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:diamond_barrel"
+  }
+}

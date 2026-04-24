@@ -1,0 +1,41 @@
+﻿{
+    "textures":  {
+                     "bottom":  "tiered_chests:block/netherite_barrel_bottom",
+                     "top":  "tiered_chests:block/netherite_barrel_top",
+                     "side":  "tiered_chests:block/netherite_barrel_side"
+                 },
+    "elements":  [
+                     {
+                         "faces":  {
+                                       "north":  {
+                                                     "texture":  "#side"
+                                                 },
+                                       "up":  {
+                                                  "texture":  "#top"
+                                              },
+                                       "west":  {
+                                                    "texture":  "#side"
+                                                },
+                                       "south":  {
+                                                     "texture":  "#side"
+                                                 },
+                                       "east":  {
+                                                    "texture":  "#side"
+                                                },
+                                       "down":  {
+                                                    "texture":  "#bottom"
+                                                }
+                                   },
+                         "from":  [
+                                      -0.02,
+                                      -0.02,
+                                      -0.02
+                                  ],
+                         "to":  [
+                                    16.02,
+                                    16.02,
+                                    16.02
+                                ]
+                     }
+                 ]
+}

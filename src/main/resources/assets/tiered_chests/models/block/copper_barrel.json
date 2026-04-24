@@ -1,0 +1,38 @@
+{
+    "parent": "minecraft:block/block",
+    "render_type": "minecraft:cutout",
+    "textures": {
+        "tier_top":    "tiered_chests:block/copper_barrel_top",
+        "tier_bottom": "tiered_chests:block/copper_barrel_bottom",
+        "tier_side":   "tiered_chests:block/copper_barrel_side",
+        "wood_side":   "tiered_chests:block/wood_barrel_side",
+        "wood_bottom": "tiered_chests:block/wood_barrel_bottom",
+        "wood_top":    "tiered_chests:block/wood_barrel_top"
+    },
+    "elements": [
+        {
+            "from": [0, 0, 0],
+            "to":   [16, 16, 16],
+            "faces": {
+                "north": { "texture": "#wood_side" },
+                "south": { "texture": "#wood_side" },
+                "west":  { "texture": "#wood_side" },
+                "east":  { "texture": "#wood_side" },
+                "up":    { "texture": "#wood_top"  },
+                "down":  { "texture": "#wood_bottom" }
+            }
+        },
+        {
+            "from": [-0.01, -0.01, -0.01],
+            "to":   [16.01, 16.01, 16.01],
+            "faces": {
+                "north": { "texture": "#tier_side"   },
+                "south": { "texture": "#tier_side"   },
+                "west":  { "texture": "#tier_side"   },
+                "east":  { "texture": "#tier_side"   },
+                "up":    { "texture": "#tier_top"    },
+                "down":  { "texture": "#tier_bottom" }
+            }
+        }
+    ]
+}

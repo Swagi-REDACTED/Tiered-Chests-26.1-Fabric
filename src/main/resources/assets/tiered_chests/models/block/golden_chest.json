@@ -1,0 +1,6 @@
+﻿{
+    "textures":  {
+                     "all":  "tiered_chests:block/golden_chest"
+                 },
+    "parent":  "minecraft:block/cube_all"
+}

@@ -1,0 +1,21 @@
+﻿{
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:copper_ingot"
+                      },
+                "C":  {
+                          "item":  "tiered_chests:wood_chest"
+                      }
+            },
+    "category":  "misc",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "result":  {
+                   "count":  1,
+                   "item":  "tiered_chests:copper_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

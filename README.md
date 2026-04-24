@@ -9,7 +9,7 @@ So lastly ALL CREDITS FOR THIS MOD PRETTY MUCH GO TO P3pp3rF1y, pajicadvance, AN
 
 # In-Game: Installation
 I've uploaded the mod to curseforge if you'd still like to install via github the directions are below!
-For regular users just download the jar file from releases on the right of the screen it will be the text saying "Tiered-Chests-1.0.0" with a green hover highlight!
+For regular users just download the jar file from releases on the right of the screen it will be the text saying "Tiered-Chests-1.0.0" with a blue hover highlight!
 Place the jar "tiered_chests-1.0.0+26.1-fabric.jar" into the mods folder in you're curseforge instance or other!
 
 # In-Game: Start Crafting

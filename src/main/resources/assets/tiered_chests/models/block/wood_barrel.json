@@ -1,0 +1,7 @@
+﻿{
+    "textures":  {
+                     "end":  "tiered_chests:block/wood_barrel_top",
+                     "side":  "tiered_chests:block/wood_barrel_side"
+                 },
+    "parent":  "minecraft:block/cube_column"
+}

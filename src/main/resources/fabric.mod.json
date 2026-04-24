@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "name": "${name}",
+  "version": "${version}",
+  "authors": [
+    "${authors}"
+  ],
+  "contributors": [
+    "${contributors}"
+  ],
+  "contact": {
+    "sources": "${sources_url}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": "${discord_url}"
+      }
+    }
+  },
+  "description": "${description}",
+  "icon": "icon.png",
+  "license": "${license}",
+  "environment": "*",
+  "accessWidener": "aw/${minecraft}.accesswidener",
+  "entrypoints": {
+    "main": [
+      "me.pajic.tiered_chests.platform.fabric.FabricEntrypoint"
+    ],
+    "client": [
+      "me.pajic.tiered_chests.platform.fabric.FabricClientEntrypoint"
+    ]
+  },
+  "mixins": [
+    "tiered_chests.mixins.json",
+    "tiered_chests.client.mixins.json"
+  ],${dependencies}
+}

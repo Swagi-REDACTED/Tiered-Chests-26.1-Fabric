@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.pajic.tiered_chests.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ShapedRecipeMixin",
+    "NormalCraftingRecipeMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

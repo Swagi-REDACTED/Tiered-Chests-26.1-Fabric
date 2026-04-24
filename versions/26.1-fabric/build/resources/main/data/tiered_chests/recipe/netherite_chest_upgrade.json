@@ -1,0 +1,23 @@
+﻿{
+    "key": {
+        "C": {
+            "item": "tiered_chests:diamond_chest"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "M": {
+            "item": "minecraft:netherite_ingot"
+        }
+    },
+    "pattern": [
+        "DMD",
+        "MCM",
+        "DMD"
+    ],
+    "result": {
+        "count": 1,
+        "id": "tiered_chests:netherite_chest"
+    },
+    "type": "minecraft:crafting_shaped"
+}

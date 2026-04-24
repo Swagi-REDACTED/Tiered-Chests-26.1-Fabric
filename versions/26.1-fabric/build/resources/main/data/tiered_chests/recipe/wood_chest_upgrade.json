@@ -1,0 +1,20 @@
+﻿{
+    "key":  {
+                "C":  {
+                          "item":  "minecraft:chest"
+                      },
+                "M":  {
+                          "tag":  "minecraft:planks"
+                      }
+            },
+    "pattern":  [
+                    "MMM",
+                    "MCM",
+                    "MMM"
+                ],
+    "result":  {
+                   "count":  1,
+                   "id":  "tiered_chests:wood_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

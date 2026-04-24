@@ -1,0 +1,21 @@
+﻿{
+    "key":  {
+                "#":  {
+                          "tag":  "minecraft:planks"
+                      },
+                "C":  {
+                          "item":  "minecraft:chest"
+                      }
+            },
+    "category":  "misc",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "result":  {
+                   "count":  1,
+                   "item":  "tiered_chests:wood_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

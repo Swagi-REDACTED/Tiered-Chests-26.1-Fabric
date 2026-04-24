@@ -1,0 +1,20 @@
+﻿{
+    "key":  {
+                "C":  {
+                          "item":  "tiered_chests:golden_chest"
+                      },
+                "M":  {
+                          "item":  "minecraft:diamond"
+                      }
+            },
+    "pattern":  [
+                    "MMM",
+                    "MCM",
+                    "MMM"
+                ],
+    "result":  {
+                   "count":  1,
+                   "id":  "tiered_chests:diamond_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "tiered_chests",
+  "name": "Tiered Chests",
+  "version": "1.0.0",
+  "authors": ["pajic", "Moonkey", "John Clout"],
+  "contributors": [""],
+  "contact": {
+    "sources": "",
+    "issues": "/issues",
+    "homepage": ""
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.discord": ""
+      }
+    }
+  },
+  "description": "Simple tiered chests and barrels.",
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.pajic.tiered_chests.platform.fabric.FabricEntrypoint"
+    ],
+    "client": [
+      "me.pajic.tiered_chests.platform.fabric.FabricClientEntrypoint"
+    ]
+  }
+}

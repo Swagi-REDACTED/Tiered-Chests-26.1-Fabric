@@ -1,0 +1,21 @@
+﻿{
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:gold_ingot"
+                      },
+                "C":  {
+                          "item":  "tiered_chests:iron_chest"
+                      }
+            },
+    "category":  "misc",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "result":  {
+                   "count":  1,
+                   "item":  "tiered_chests:golden_chest"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

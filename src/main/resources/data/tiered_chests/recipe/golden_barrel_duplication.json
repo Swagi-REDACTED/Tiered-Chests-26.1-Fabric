@@ -1,0 +1,20 @@
+{
+    "key":  {
+                "C":  {
+                          "item":  "tiered_chests:golden_barrel"
+                      },
+                "M":  {
+                          "item":  "minecraft:gold_ingot"
+                      }
+            },
+    "pattern":  [
+                    "MMM",
+                    "MCM",
+                    "MMM"
+                ],
+    "result":  {
+                   "count":  2,
+                   "id":  "tiered_chests:golden_barrel"
+               },
+    "type": "tiered_chests:upgrade"
+}

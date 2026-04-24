@@ -1,0 +1,21 @@
+﻿{
+    "key":  {
+                "#":  {
+                          "item":  "minecraft:diamond"
+                      },
+                "C":  {
+                          "item":  "tiered_chests:golden_barrel"
+                      }
+            },
+    "category":  "misc",
+    "pattern":  [
+                    "###",
+                    "#C#",
+                    "###"
+                ],
+    "result":  {
+                   "count":  1,
+                   "item":  "tiered_chests:diamond_barrel"
+               },
+    "type":  "minecraft:crafting_shaped"
+}

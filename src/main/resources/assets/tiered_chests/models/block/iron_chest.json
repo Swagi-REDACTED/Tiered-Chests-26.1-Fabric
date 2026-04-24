@@ -1,6 +1,0 @@
-﻿{
-    "textures":  {
-                     "all":  "tiered_chests:block/iron_chest"
-                 },
-    "parent":  "minecraft:block/cube_all"
-}

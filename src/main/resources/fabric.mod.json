@@ -1,29 +1,31 @@
 {
   "schemaVersion": 1,
-  "id": "${id}",
-  "name": "${name}",
-  "version": "${version}",
+  "id": "tiered_chests",
+  "name": "Tiered Chests",
+  "version": "1.0.3",
   "authors": [
-    "${authors}"
+    "pajic",
+    "Moonkey",
+    "John Clout"
   ],
   "contributors": [
-    "${contributors}"
+    ""
   ],
   "contact": {
-    "sources": "${sources_url}"
+    "sources": ""
   },
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.discord": "${discord_url}"
+        "modmenu.discord": ""
       }
     }
   },
-  "description": "${description}",
+  "description": "Simple tiered chests and barrels.",
   "icon": "icon.png",
-  "license": "${license}",
+  "license": "MIT",
   "environment": "*",
-  "accessWidener": "aw/${minecraft}.accesswidener",
+  "accessWidener": "aw/26.1.accesswidener",
   "entrypoints": {
     "main": [
       "me.pajic.tiered_chests.platform.fabric.FabricEntrypoint"
@@ -35,5 +37,15 @@
   "mixins": [
     "tiered_chests.mixins.json",
     "tiered_chests.client.mixins.json"
-  ],${dependencies}
+  ],
+  "depends": {
+    "fabric-api": ">=0.144.4+26.1",
+    "fabricloader": ">=0.18.5",
+    "fzzy_config": "*",
+    "java": ">=25",
+    "minecraft": ">=26.1"
+  },
+  "recommends": {
+    "modmenu": "*"
+  }
 }

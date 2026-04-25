@@ -1,7 +1,0 @@
-﻿{
-    "textures":  {
-                     "layer0":  "tiered_chests:entity/chest/oak",
-                     "layer1":  "tiered_chests:entity/chest/golden_tier"
-                 },
-    "parent":  "minecraft:item/generated"
-}

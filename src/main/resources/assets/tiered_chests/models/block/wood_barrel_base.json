@@ -1,8 +1,0 @@
-{
-    "textures": {
-        "particle": "minecraft:block/barrel_side",
-        "bottom": "tiered_chests:block/wood_barrel_bottom",
-        "top": "tiered_chests:block/wood_barrel_top",
-        "side": "tiered_chests:block/wood_barrel_side"
-    }
-}

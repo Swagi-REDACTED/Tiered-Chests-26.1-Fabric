@@ -1,9 +1,0 @@
-{
-  "sources": [
-    {
-      "type": "directory",
-      "source": "tiered_chests:entity/chest",
-      "prefix": "entity/chest/"
-    }
-  ]
-}

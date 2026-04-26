@@ -115,17 +115,15 @@ public class FabricClientEntrypoint implements ClientModInitializer {
                 }), chest, barrel);
             }
 
-            net.fabricmc.fabric.api.resource.ResourceManagerHelper.get(net.minecraft.server.packs.PackType.CLIENT_RESOURCES).registerReloadListener(new net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener() {
-                @Override
-                public net.minecraft.resources.Identifier getFabricId() {
-                    return TieredChests.id("resource_reload_listener");
-                }
-
-                @Override
-                public void onResourceManagerReload(net.minecraft.server.packs.resources.ResourceManager manager) {
-                    me.pajic.tiered_chests.util.GuiColorMatcher.reset();
-                }
-            });
+            net.fabricmc.fabric.api.resource.v1.ResourceLoader.get(net.minecraft.server.packs.PackType.CLIENT_RESOURCES)
+                    .registerReloadListener(TieredChests.id("resource_reload_listener"),
+                            new net.minecraft.server.packs.resources.ResourceManagerReloadListener() {
+                                @Override
+                                public void onResourceManagerReload(
+                                        net.minecraft.server.packs.resources.ResourceManager manager) {
+                                    me.pajic.tiered_chests.util.GuiColorMatcher.reset();
+                                }
+                            });
 
             tryInjectStackToNearbyChests();
 
@@ -136,6 +134,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
         }
     }
 
+    @SuppressWarnings("unchecked")
     private void tryInjectStackToNearbyChests() {
         if (net.fabricmc.loader.api.FabricLoader.getInstance().isModLoaded("stack-to-nearby-chests")) {
             try {
@@ -154,10 +153,14 @@ public class FabricClientEntrypoint implements ClientModInitializer {
                 boolean changed = false;
                 for (ChestTier tier : ChestTier.values()) {
                     String name = tier.getSerializedName();
-                    if (newStackingTargets.add("tiered_chests:" + name + "_chest")) changed = true;
-                    if (newStackingTargets.add("tiered_chests:" + name + "_barrel")) changed = true;
-                    if (newRestockingSources.add("tiered_chests:" + name + "_chest")) changed = true;
-                    if (newRestockingSources.add("tiered_chests:" + name + "_barrel")) changed = true;
+                    if (newStackingTargets.add("tiered_chests:" + name + "_chest"))
+                        changed = true;
+                    if (newStackingTargets.add("tiered_chests:" + name + "_barrel"))
+                        changed = true;
+                    if (newRestockingSources.add("tiered_chests:" + name + "_chest"))
+                        changed = true;
+                    if (newRestockingSources.add("tiered_chests:" + name + "_barrel"))
+                        changed = true;
                 }
 
                 if (changed) {

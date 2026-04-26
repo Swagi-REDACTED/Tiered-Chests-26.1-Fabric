@@ -1,3 +1,6 @@
+# Update Format:
+I'm only creating new branches for other versions of minecraft, the main branch is 26.1 and will stay as 26.1 forever, the rest of the branches will be clearly labeled!
+
 # Tiered-Chests-26.1-Fabric
 Minecraft mod for tiered chests contains recipes to craft higher level chests and barrels.
 Now including double chests!

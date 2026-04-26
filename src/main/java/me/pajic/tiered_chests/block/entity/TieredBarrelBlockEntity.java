@@ -182,6 +182,9 @@ public class TieredBarrelBlockEntity extends RandomizableContainerBlockEntity
     }
 
     public static void serverTick(Level level, BlockPos pos, BlockState state, TieredBarrelBlockEntity blockEntity) {
-        blockEntity.recheckOpen();
+        blockEntity.openersCounter.recheckOpeners(level, pos, state);
+        if (state.getValue(TieredBarrelBlock.OPEN) && blockEntity.openersCounter.getOpenerCount() == 0) {
+            blockEntity.updateBlockState(state, false);
+        }
     }
 }

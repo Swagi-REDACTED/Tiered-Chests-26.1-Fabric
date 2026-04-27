@@ -133,8 +133,8 @@ public class TieredBarrelRenderer
 
                 // Metal Tier Overlay (submitted after base to draw on top)
                 if (state.tier != me.pajic.tiered_chests.util.ChestTier.WOOD) {
-                        float offset = 0f;
                         float zO = 0.00018f; // Tiny Z-offset to prevent Z-fighting
+                        float offset = -zO;
 
                         renderFace(submitNodeCollector, poseStack, blocksType, light, tierSide,
                                         1f - offset, offset, -zO, offset, offset, -zO, offset, 1f - offset, -zO,

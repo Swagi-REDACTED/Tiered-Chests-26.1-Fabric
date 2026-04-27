@@ -6,7 +6,7 @@ Minecraft mod for tiered chests contains recipes to craft higher level chests an
 Now including double chests!
 
 # Note:
-This mod uses chest textures from sophisticated storage for versions 1.0.0-1.0.9 ALL CREDIT FOR TEXTURES GO TO THAT MOD AND WHEN ITS UPDATED FOR FABRIC DOWNLOAD THE UNOFFICIAL PORT FOR FABRIC INSTEAD
+This mod uses chest textures from sophisticated storage for versions 1.0.0-1.0.9, after which I've made inspired translations ALL CREDIT FOR TEXTURES AND MOD IDEA GO TO THAT MOD(Sophisticated Storage, and Sophisticated Core) AND WHEN ITS UPDATED FOR FABRIC DOWNLOAD THE UNOFFICIAL PORT FOR FABRIC INSTEAD
 Secondly this mods framework was fully inspired by Tiered Backpacks on curseforge and github I initially scaffolded it off of Tiered Backpacks-1.0.16-Fabric-26.1 and from there cleaned it and made this!
 So lastly ALL CREDITS FOR THIS MOD PRETTY MUCH GO TO P3pp3rF1y, pajicadvance, AND Salandora!
 

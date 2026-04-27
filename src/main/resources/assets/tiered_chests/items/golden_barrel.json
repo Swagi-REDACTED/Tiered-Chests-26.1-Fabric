@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "minecraft:block/barrel",
+    "model": {
+      "type": "tiered_chests:tiered_barrel",
+      "tier": "golden"
+    }
+  }
+}

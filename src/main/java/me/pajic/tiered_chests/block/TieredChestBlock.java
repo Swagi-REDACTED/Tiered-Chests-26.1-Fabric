@@ -246,6 +246,20 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
         }
     };
 
+    public static final DoubleBlockCombiner.Combiner<TieredChestBlockEntity, Optional<Container>> INVENTORY_COMBINER = new DoubleBlockCombiner.Combiner<>() {
+        public Optional<Container> acceptDouble(TieredChestBlockEntity first, TieredChestBlockEntity second) {
+            return Optional.of(new CompoundContainer(first, second));
+        }
+
+        public Optional<Container> acceptSingle(TieredChestBlockEntity single) {
+            return Optional.of(single);
+        }
+
+        public Optional<Container> acceptNone() {
+            return Optional.empty();
+        }
+    };
+
     public static DoubleBlockCombiner.Combiner<TieredChestBlockEntity, Float2FloatFunction> opennessCombiner(
             final net.minecraft.world.level.block.entity.LidBlockEntity entity) {
         return new DoubleBlockCombiner.Combiner<>() {

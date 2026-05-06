@@ -6,15 +6,21 @@ import me.pajic.tiered_chests.block.entity.ModBlockEntities;
 import me.pajic.tiered_chests.item.ModItems;
 import me.pajic.tiered_chests.menu.ModMenuTypes;
 import me.pajic.tiered_chests.network.ModNetworking;
+import me.pajic.tiered_chests.block.TieredChestBlock;
+import me.pajic.tiered_chests.block.entity.TieredBarrelBlockEntity;
+import me.pajic.tiered_chests.block.entity.TieredChestBlockEntity;
 import me.pajic.tiered_chests.util.ChestTier;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+import net.fabricmc.fabric.api.transfer.v1.item.ContainerStorage;
+import net.fabricmc.fabric.api.transfer.v1.item.ItemStorage;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
@@ -45,6 +51,25 @@ public class FabricEntrypoint implements ModInitializer {
                     }
                 })
                 .build());
+
+            // Register item storage for tiered chests
+            for (ChestTier tier : ChestTier.values()) {
+                ItemStorage.SIDED.registerForBlocks((world, pos, state, blockEntity, context) -> {
+                    if (blockEntity instanceof TieredChestBlockEntity chestBe) {
+                        Container container = ((TieredChestBlock) state.getBlock()).combine(state, world, pos, true)
+                                .apply(TieredChestBlock.INVENTORY_COMBINER).orElse(chestBe);
+                        return ContainerStorage.of(container, context);
+                    }
+                    return null;
+                }, ModBlocks.TIERED_CHESTS.get(tier));
+
+                ItemStorage.SIDED.registerForBlocks((world, pos, state, blockEntity, context) -> {
+                    if (blockEntity instanceof TieredBarrelBlockEntity barrelBe) {
+                        return ContainerStorage.of(barrelBe, context);
+                    }
+                    return null;
+                }, ModBlocks.TIERED_BARRELS.get(tier));
+            }
 
             initCreativeTabs();
             

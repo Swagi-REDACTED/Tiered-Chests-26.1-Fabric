@@ -7,6 +7,7 @@ import me.pajic.tiered_chests.ui.TieredChestMenu;
 import me.pajic.tiered_chests.util.ChestTier;
 import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -36,8 +37,10 @@ import java.util.Objects;
 
 import java.util.List;
 
+import net.minecraft.world.WorldlyContainer;
+
 public class TieredChestBlockEntity extends RandomizableContainerBlockEntity
-        implements ExtendedMenuProvider<ModNetworking.S2CTieredChestPayload>, LidBlockEntity {
+        implements ExtendedMenuProvider<ModNetworking.S2CTieredChestPayload>, LidBlockEntity, WorldlyContainer {
     private final ChestTier tier;
     private NonNullList<ItemStack> items;
 
@@ -226,5 +229,25 @@ public class TieredChestBlockEntity extends RandomizableContainerBlockEntity
         if (!this.remove) {
             this.openersCounter.recheckOpeners(this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
+    }
+
+    @Override
+    public int[] getSlotsForFace(Direction side) {
+        int size = this.getContainerSize();
+        int[] slots = new int[size];
+        for (int i = 0; i < size; i++) {
+            slots[i] = i;
+        }
+        return slots;
+    }
+
+    @Override
+    public boolean canPlaceItemThroughFace(int slot, ItemStack stack, @Nullable Direction side) {
+        return this.canPlaceItem(slot, stack);
+    }
+
+    @Override
+    public boolean canTakeItemThroughFace(int slot, ItemStack stack, Direction side) {
+        return true;
     }
 }

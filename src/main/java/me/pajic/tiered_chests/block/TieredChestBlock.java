@@ -61,8 +61,11 @@ import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Supplier;
 import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
+import net.minecraft.world.WorldlyContainerHolder;
+import net.minecraft.world.WorldlyContainer;
+import me.pajic.tiered_chests.inventory.WorldlyCompoundContainer;
 
-public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, SimpleWaterloggedBlock {
+public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, SimpleWaterloggedBlock, WorldlyContainerHolder {
     public static final MapCodec<TieredChestBlock> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             ChestTier.CODEC.fieldOf("tier").forGetter(TieredChestBlock::getTier),
             propertiesCodec()).apply(inst, TieredChestBlock::new));
@@ -145,8 +148,13 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
         return this.combine(state, level, pos, false).apply(MENU_PROVIDER_COMBINER).orElse(null);
     }
 
+    @Override
+    public WorldlyContainer getContainer(BlockState state, LevelAccessor level, BlockPos pos) {
+        return (WorldlyContainer) this.combine(state, level, pos, false).apply(WORLDLY_INVENTORY_COMBINER).orElse(null);
+    }
+
     public DoubleBlockCombiner.NeighborCombineResult<? extends TieredChestBlockEntity> combine(
-            BlockState state, Level level, BlockPos pos, boolean ignoreBeingBlocked) {
+            BlockState state, LevelAccessor level, BlockPos pos, boolean ignoreBeingBlocked) {
         BiPredicate<LevelAccessor, BlockPos> predicate;
         if (ignoreBeingBlocked) {
             predicate = (levelAccessor, blockPos) -> false;
@@ -256,6 +264,20 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
         }
 
         public Optional<Container> acceptNone() {
+            return Optional.empty();
+        }
+    };
+
+    public static final DoubleBlockCombiner.Combiner<TieredChestBlockEntity, Optional<WorldlyContainer>> WORLDLY_INVENTORY_COMBINER = new DoubleBlockCombiner.Combiner<>() {
+        public Optional<WorldlyContainer> acceptDouble(TieredChestBlockEntity first, TieredChestBlockEntity second) {
+            return Optional.of(new WorldlyCompoundContainer(first, second));
+        }
+
+        public Optional<WorldlyContainer> acceptSingle(TieredChestBlockEntity single) {
+            return Optional.of(single);
+        }
+
+        public Optional<WorldlyContainer> acceptNone() {
             return Optional.empty();
         }
     };

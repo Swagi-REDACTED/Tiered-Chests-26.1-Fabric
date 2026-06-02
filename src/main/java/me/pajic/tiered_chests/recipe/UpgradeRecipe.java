@@ -11,15 +11,15 @@ import net.minecraft.world.item.crafting.*;
 
 public class UpgradeRecipe extends ShapedRecipe {
     public static final MapCodec<UpgradeRecipe> MAP_CODEC = ShapedRecipe.MAP_CODEC.xmap(
-            r -> new UpgradeRecipe(((ShapedRecipeAccessor) r).getCommonInfo(), ((ShapedRecipeAccessor) r).getBookInfo(),
-                    ((ShapedRecipeAccessor) r).getPattern(), ((ShapedRecipeAccessor) r).getResult()),
+            r -> new UpgradeRecipe(((ShapedRecipeAccessor) r).tieredchests$getCommonInfo(), ((ShapedRecipeAccessor) r).tieredchests$getBookInfo(),
+                    ((ShapedRecipeAccessor) r).tieredchests$getPattern(), ((ShapedRecipeAccessor) r).tieredchests$getResult()),
             r -> r);
 
     public static final StreamCodec<RegistryFriendlyByteBuf, UpgradeRecipe> STREAM_CODEC = ShapedRecipe.STREAM_CODEC
             .map(
-                    r -> new UpgradeRecipe(((ShapedRecipeAccessor) r).getCommonInfo(),
-                            ((ShapedRecipeAccessor) r).getBookInfo(), ((ShapedRecipeAccessor) r).getPattern(),
-                            ((ShapedRecipeAccessor) r).getResult()),
+                    r -> new UpgradeRecipe(((ShapedRecipeAccessor) r).tieredchests$getCommonInfo(),
+                            ((ShapedRecipeAccessor) r).tieredchests$getBookInfo(), ((ShapedRecipeAccessor) r).tieredchests$getPattern(),
+                            ((ShapedRecipeAccessor) r).tieredchests$getResult()),
                     r -> r);
 
     public UpgradeRecipe(Recipe.CommonInfo commonInfo, CraftingRecipe.CraftingBookInfo bookInfo,

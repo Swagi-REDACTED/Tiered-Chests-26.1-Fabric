@@ -14,12 +14,12 @@ public abstract class ShapedRecipeMixin implements ShapedRecipeAccessor {
     @Shadow @Final private ItemStackTemplate result;
 
     @Override
-    public ShapedRecipePattern getPattern() {
+    public ShapedRecipePattern tieredchests$getPattern() {
         return pattern;
     }
 
     @Override
-    public ItemStackTemplate getResult() {
+    public ItemStackTemplate tieredchests$getResult() {
         return result;
     }
 }

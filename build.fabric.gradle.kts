@@ -25,7 +25,6 @@ platform {
 }
 
 loom {
-	accessWidenerPath = rootProject.file("src/main/resources/aw/${stonecutter.current.version}.accesswidener")
 	runs.named("client") {
 		client()
 		ideConfigGenerated(true)
@@ -48,17 +47,16 @@ repositories {
 	strictMaven("https://maven.fzzyhmstrs.me/", "me.fzzyhmstrs") { name = "Fzzy Config" }
 	strictMaven("https://maven.terraformersmc.com/", "com.terraformersmc") { name = "TerraformersMC" }
 	strictMaven("https://api.modrinth.com/maven", "maven.modrinth") { name = "Modrinth" }
-	maven("https://maven.ladysnake.org/releases") { name = "Ladysnake Libs" }
-	maven("https://maven.nucleoid.xyz/releases") { name = "Nucleoid" }
 }
 
 dependencies {
 	minecraft("com.mojang:minecraft:${prop("deps.minecraft")}")
 	implementation(libs.fabric.loader)
 	implementation("net.fabricmc.fabric-api:fabric-api:${prop("deps.fabric-api")}")
-	localRuntime("com.terraformersmc:modmenu:${prop("deps.modmenu")}")
 	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}")
-	implementation("maven.modrinth:shulkerboxtooltip:${prop("deps.sbt")}-fabric")
-	compileOnlyApi("eu.pb4:trinkets:${prop("deps.trinkets")}")
-	//runtimeOnly("eu.pb4:trinkets:${prop("deps.trinkets")}")
+}
+
+tasks.withType<JavaCompile>().all {
+    options.compilerArgs.add("-Xlint:deprecation")
+    options.compilerArgs.add("-Xlint:unchecked")
 }

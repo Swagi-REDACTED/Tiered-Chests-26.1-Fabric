@@ -6,8 +6,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.ShapedRecipePattern;
 
 public interface ShapedRecipeAccessor {
-    Recipe.CommonInfo getCommonInfo();
-    CraftingRecipe.CraftingBookInfo getBookInfo();
-    ShapedRecipePattern getPattern();
-    ItemStackTemplate getResult();
+    Recipe.CommonInfo tieredchests$getCommonInfo();
+    CraftingRecipe.CraftingBookInfo tieredchests$getBookInfo();
+    ShapedRecipePattern tieredchests$getPattern();
+    ItemStackTemplate tieredchests$getResult();
 }

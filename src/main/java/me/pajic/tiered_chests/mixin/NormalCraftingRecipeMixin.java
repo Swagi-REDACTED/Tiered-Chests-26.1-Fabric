@@ -14,12 +14,12 @@ public abstract class NormalCraftingRecipeMixin implements ShapedRecipeAccessor 
     @Shadow @Final protected CraftingRecipe.CraftingBookInfo bookInfo;
 
     @Override
-    public Recipe.CommonInfo getCommonInfo() {
+    public Recipe.CommonInfo tieredchests$getCommonInfo() {
         return commonInfo;
     }
 
     @Override
-    public CraftingRecipe.CraftingBookInfo getBookInfo() {
+    public CraftingRecipe.CraftingBookInfo tieredchests$getBookInfo() {
         return bookInfo;
     }
 }

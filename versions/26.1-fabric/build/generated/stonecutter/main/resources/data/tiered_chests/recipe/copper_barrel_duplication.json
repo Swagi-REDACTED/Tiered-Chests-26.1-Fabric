@@ -12,5 +12,5 @@
     "count": 2,
     "id": "tiered_chests:copper_barrel"
   },
-  "type": "tiered_chests:upgrade"
+  "type": "minecraft:crafting_shaped"
 }

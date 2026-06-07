@@ -1,5 +1,5 @@
 {
-  "type": "tiered_chests:upgrade",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "MMM",
     "MCM",

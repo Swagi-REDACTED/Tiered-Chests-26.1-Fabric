@@ -12,5 +12,5 @@
     "count": 2,
     "id": "tiered_chests:diamond_chest"
   },
-  "type": "tiered_chests:upgrade"
+  "type": "minecraft:crafting_shaped"
 }

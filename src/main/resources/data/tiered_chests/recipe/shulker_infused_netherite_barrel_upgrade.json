@@ -1,12 +1,13 @@
 {
-  "type": "tiered_chests:upgrade",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
-    "MMM",
-    "MCM",
-    "MMM"
+    "DND",
+    "NCN",
+    "DND"
   ],
   "key": {
-    "M": "minecraft:netherite_ingot",
+    "D": "minecraft:diamond",
+    "N": "minecraft:netherite_ingot",
     "C": "tiered_chests:shulker_infused_diamond_barrel"
   },
   "result": {

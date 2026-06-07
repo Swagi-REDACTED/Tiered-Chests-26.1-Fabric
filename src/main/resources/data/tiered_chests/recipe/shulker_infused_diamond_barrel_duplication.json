@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MSM",
+    "MCM",
+    "MSM"
+  ],
+  "key": {
+    "M": "minecraft:diamond",
+    "S": "minecraft:shulker_shell",
+    "C": "tiered_chests:shulker_infused_diamond_barrel"
+  },
+  "result": {
+    "count": 2,
+    "id": "tiered_chests:shulker_infused_diamond_barrel"
+  }
+}

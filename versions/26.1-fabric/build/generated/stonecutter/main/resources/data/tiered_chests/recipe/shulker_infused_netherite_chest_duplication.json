@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DSD",
+    "NCN",
+    "DSD"
+  ],
+  "key": {
+    "D": "minecraft:diamond",
+    "N": "minecraft:netherite_ingot",
+    "S": "minecraft:shulker_shell",
+    "C": "tiered_chests:shulker_infused_netherite_chest"
+  },
+  "result": {
+    "count": 2,
+    "id": "tiered_chests:shulker_infused_netherite_chest"
+  }
+}

@@ -1,5 +1,6 @@
 package me.pajic.tiered_chests.mixin.client;
 
+import me.pajic.tiered_chests.ui.ScaleState;
 import me.pajic.tiered_chests.ui.TieredChestScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -10,9 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
-
-    private static int savedGuiScale = -1;
-    public static boolean isRestoring = false;
 
     @Inject(method = "setScreen", at = @At("HEAD"))
     private void tieredchests$onSetScreen(Screen screen, CallbackInfo ci) {
@@ -29,15 +27,15 @@ public class MinecraftMixin {
                 int newScale = client.getWindow().calculateScale(guiScale, forceUnicode);
                 
                 if (newScale > 2) {
-                    savedGuiScale = client.getWindow().getGuiScale();
+                    ScaleState.savedGuiScale = client.getWindow().getGuiScale();
                     client.getWindow().setGuiScale(2);
                 }
             } else {
-                if (savedGuiScale != -1) {
-                    isRestoring = true;
-                    client.getWindow().setGuiScale(savedGuiScale);
-                    isRestoring = false;
-                    savedGuiScale = -1;
+                if (ScaleState.savedGuiScale != -1) {
+                    ScaleState.isRestoring = true;
+                    client.getWindow().setGuiScale(ScaleState.savedGuiScale);
+                    ScaleState.isRestoring = false;
+                    ScaleState.savedGuiScale = -1;
                 }
             }
         }

@@ -1,9 +1,9 @@
 {
-  "type": "tiered_chests:upgrade",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
-    " S ",
-    " C ",
-    " S "
+    "S",
+    "C",
+    "S"
   ],
   "key": {
     "S": "minecraft:shulker_shell",

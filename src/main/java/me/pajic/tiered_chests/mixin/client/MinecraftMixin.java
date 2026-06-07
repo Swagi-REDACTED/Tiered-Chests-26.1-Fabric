@@ -11,30 +11,34 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Minecraft.class)
 public class MinecraftMixin {
 
-    private boolean tieredchests$wasTiered = false;
+    private static int savedGuiScale = -1;
+    public static boolean isRestoring = false;
 
     @Inject(method = "setScreen", at = @At("HEAD"))
-    private void tieredchests$onSetScreenHead(Screen screen, CallbackInfo ci) {
+    private void tieredchests$onSetScreen(Screen screen, CallbackInfo ci) {
         Minecraft client = (Minecraft) (Object) this;
-        this.tieredchests$wasTiered = client.screen instanceof TieredChestScreen;
-    }
-
-    @Inject(method = "setScreen", at = @At("RETURN"))
-    private void tieredchests$onSetScreenReturn(Screen screen, CallbackInfo ci) {
-        Minecraft client = (Minecraft) (Object) this;
+        Screen current = client.screen;
+        
+        boolean wasTiered = current instanceof TieredChestScreen;
         boolean isTiered = screen instanceof TieredChestScreen;
         
-        if (this.tieredchests$wasTiered != isTiered && client.getWindow() != null) {
-            int guiScale = client.options.guiScale().get();
-            boolean forceUnicode = client.options.forceUnicodeFont().get();
-            int newScale = client.getWindow().calculateScale(guiScale, forceUnicode);
-            
-            if (isTiered && newScale > 2) {
-                newScale = 2;
-            }
-            
-            if (newScale != client.getWindow().getGuiScale()) {
-                client.getWindow().setGuiScale(newScale);
+        if (wasTiered != isTiered && client.getWindow() != null) {
+            if (isTiered) {
+                int guiScale = client.options.guiScale().get();
+                boolean forceUnicode = client.options.forceUnicodeFont().get();
+                int newScale = client.getWindow().calculateScale(guiScale, forceUnicode);
+                
+                if (newScale > 2) {
+                    savedGuiScale = client.getWindow().getGuiScale();
+                    client.getWindow().setGuiScale(2);
+                }
+            } else {
+                if (savedGuiScale != -1) {
+                    isRestoring = true;
+                    client.getWindow().setGuiScale(savedGuiScale);
+                    isRestoring = false;
+                    savedGuiScale = -1;
+                }
             }
         }
     }

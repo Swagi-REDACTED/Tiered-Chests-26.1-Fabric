@@ -21,14 +21,14 @@ public class ModBlockEntities {
             BlockEntityType<TieredChestBlockEntity> chestType = Registry.register(
                 BuiltInRegistries.BLOCK_ENTITY_TYPE,
                 TieredChests.id(tier.getSerializedName() + "_chest"),
-                FabricBlockEntityTypeBuilder.create((pos, state) -> new TieredChestBlockEntity(tier, pos, state), ModBlocks.TIERED_CHESTS.get(tier)).build()
+                FabricBlockEntityTypeBuilder.create((pos, state) -> new TieredChestBlockEntity(tier, pos, state), ModBlocks.TIERED_CHESTS.get(tier), ModBlocks.SHULKER_INFUSED_TIERED_CHESTS.get(tier)).build()
             );
             TIERED_CHESTS.put(tier, chestType);
 
             BlockEntityType<TieredBarrelBlockEntity> barrelType = Registry.register(
                 BuiltInRegistries.BLOCK_ENTITY_TYPE,
                 TieredChests.id(tier.getSerializedName() + "_barrel"),
-                FabricBlockEntityTypeBuilder.create((pos, state) -> new TieredBarrelBlockEntity(tier, pos, state), ModBlocks.TIERED_BARRELS.get(tier)).build()
+                FabricBlockEntityTypeBuilder.create((pos, state) -> new TieredBarrelBlockEntity(tier, pos, state), ModBlocks.TIERED_BARRELS.get(tier), ModBlocks.SHULKER_INFUSED_TIERED_BARRELS.get(tier)).build()
             );
             TIERED_BARRELS.put(tier, barrelType);
         }

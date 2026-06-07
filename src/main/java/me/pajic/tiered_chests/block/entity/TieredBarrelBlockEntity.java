@@ -155,6 +155,13 @@ public class TieredBarrelBlockEntity extends RandomizableContainerBlockEntity
     }
 
     @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state) {
+        if (!(state.getBlock() instanceof me.pajic.tiered_chests.block.ShulkerInfusedTieredBarrelBlock)) {
+            super.preRemoveSideEffects(pos, state);
+        }
+    }
+
+    @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
         if (!this.trySaveLootTable(output)) {

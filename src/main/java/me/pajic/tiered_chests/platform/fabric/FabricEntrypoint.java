@@ -48,6 +48,8 @@ public class FabricEntrypoint implements ModInitializer {
                     for (ChestTier tier : ChestTier.values()) {
                         output.accept(ModItems.TIERED_CHESTS.get(tier));
                         output.accept(ModItems.TIERED_BARRELS.get(tier));
+                        output.accept(ModItems.SHULKER_INFUSED_TIERED_CHESTS.get(tier));
+                        output.accept(ModItems.SHULKER_INFUSED_TIERED_BARRELS.get(tier));
                     }
                 })
                 .build());
@@ -61,14 +63,14 @@ public class FabricEntrypoint implements ModInitializer {
                         return ContainerStorage.of(container, context);
                     }
                     return null;
-                }, ModBlocks.TIERED_CHESTS.get(tier));
+                }, ModBlocks.TIERED_CHESTS.get(tier), ModBlocks.SHULKER_INFUSED_TIERED_CHESTS.get(tier));
 
                 ItemStorage.SIDED.registerForBlocks((world, pos, state, blockEntity, context) -> {
                     if (blockEntity instanceof TieredBarrelBlockEntity barrelBe) {
                         return ContainerStorage.of(barrelBe, context);
                     }
                     return null;
-                }, ModBlocks.TIERED_BARRELS.get(tier));
+                }, ModBlocks.TIERED_BARRELS.get(tier), ModBlocks.SHULKER_INFUSED_TIERED_BARRELS.get(tier));
             }
 
             initCreativeTabs();
@@ -85,6 +87,8 @@ public class FabricEntrypoint implements ModInitializer {
             for (ChestTier tier : ChestTier.values()) {
                 entries.accept(ModItems.TIERED_CHESTS.get(tier));
                 entries.accept(ModItems.TIERED_BARRELS.get(tier));
+                entries.accept(ModItems.SHULKER_INFUSED_TIERED_CHESTS.get(tier));
+                entries.accept(ModItems.SHULKER_INFUSED_TIERED_BARRELS.get(tier));
             }
         });
     }

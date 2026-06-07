@@ -18,6 +18,8 @@ public class ModBlocks {
 
     public static final Map<ChestTier, TieredChestBlock> TIERED_CHESTS = new EnumMap<>(ChestTier.class);
     public static final Map<ChestTier, TieredBarrelBlock> TIERED_BARRELS = new EnumMap<>(ChestTier.class);
+    public static final Map<ChestTier, ShulkerInfusedTieredChestBlock> SHULKER_INFUSED_TIERED_CHESTS = new EnumMap<>(ChestTier.class);
+    public static final Map<ChestTier, ShulkerInfusedTieredBarrelBlock> SHULKER_INFUSED_TIERED_BARRELS = new EnumMap<>(ChestTier.class);
 
     public static void init() {
         for (ChestTier tier : ChestTier.values()) {
@@ -40,6 +42,16 @@ public class ModBlocks {
             TIERED_CHESTS.put(tier, chest);
             Registry.register(BuiltInRegistries.BLOCK, chestKey, chest);
 
+            Identifier shulkerChestId = TieredChests.id("shulker_infused_" + tier.getSerializedName() + "_chest");
+            ResourceKey<Block> shulkerChestKey = ResourceKey.create(Registries.BLOCK, shulkerChestId);
+            ShulkerInfusedTieredChestBlock shulkerChest = new ShulkerInfusedTieredChestBlock(tier, BlockBehaviour.Properties.of()
+                .setId(shulkerChestKey)
+                .mapColor(MapColor.WOOD)
+                .strength(hardness)
+                .noOcclusion());
+            SHULKER_INFUSED_TIERED_CHESTS.put(tier, shulkerChest);
+            Registry.register(BuiltInRegistries.BLOCK, shulkerChestKey, shulkerChest);
+
             Identifier barrelId = TieredChests.id(tier.getSerializedName() + "_barrel");
             ResourceKey<Block> barrelKey = ResourceKey.create(Registries.BLOCK, barrelId);
             TieredBarrelBlock barrel = new TieredBarrelBlock(tier, BlockBehaviour.Properties.of()
@@ -49,6 +61,16 @@ public class ModBlocks {
                 .noOcclusion());
             TIERED_BARRELS.put(tier, barrel);
             Registry.register(BuiltInRegistries.BLOCK, barrelKey, barrel);
+
+            Identifier shulkerBarrelId = TieredChests.id("shulker_infused_" + tier.getSerializedName() + "_barrel");
+            ResourceKey<Block> shulkerBarrelKey = ResourceKey.create(Registries.BLOCK, shulkerBarrelId);
+            ShulkerInfusedTieredBarrelBlock shulkerBarrel = new ShulkerInfusedTieredBarrelBlock(tier, BlockBehaviour.Properties.of()
+                .setId(shulkerBarrelKey)
+                .mapColor(MapColor.WOOD)
+                .strength(hardness)
+                .noOcclusion());
+            SHULKER_INFUSED_TIERED_BARRELS.put(tier, shulkerBarrel);
+            Registry.register(BuiltInRegistries.BLOCK, shulkerBarrelKey, shulkerBarrel);
         }
     }
 }

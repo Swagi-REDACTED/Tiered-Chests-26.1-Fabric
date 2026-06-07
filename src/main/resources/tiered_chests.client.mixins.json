@@ -8,7 +8,9 @@
     "TerrainParticleMixin",
     "SpriteContentsAccessor",
     "MinecraftAccessor",
-    "EntityMixin"
+    "EntityMixin",
+    "MinecraftMixin",
+    "WindowMixin"
   ],
   "injectors": {
     "defaultRequire": 1

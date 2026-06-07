@@ -131,6 +131,32 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
     }
 
     @Override
+    protected net.minecraft.world.InteractionResult useItemOn(net.minecraft.world.item.ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, net.minecraft.world.InteractionHand hand, BlockHitResult hitResult) {
+        if (player.isCrouching() && stack.is(net.minecraft.world.item.Items.SHULKER_SHELL) && stack.getCount() >= 2) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof me.pajic.tiered_chests.block.entity.TieredChestBlockEntity tieredBe) {
+                if (!(state.getBlock() instanceof ShulkerInfusedTieredChestBlock)) {
+                    if (!level.isClientSide()) {
+                        net.minecraft.core.component.DataComponentMap components = tieredBe.collectComponents();
+                        BlockState newState = ModBlocks.SHULKER_INFUSED_TIERED_CHESTS.get(tier).withPropertiesOf(state);
+                        level.setBlock(pos, newState, 3);
+                        BlockEntity newBlockEntity = level.getBlockEntity(pos);
+                        if (newBlockEntity != null) {
+                            newBlockEntity.setComponents(components);
+                        }
+                        if (!player.getAbilities().instabuild) {
+                            stack.shrink(2);
+                        }
+                        level.playSound(null, pos, net.minecraft.sounds.SoundEvents.SHULKER_BOX_OPEN, net.minecraft.sounds.SoundSource.BLOCKS, 1.0F, 1.0F);
+                    }
+                    return net.minecraft.world.InteractionResult.SUCCESS;
+                }
+            }
+        }
+        return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+    }
+
+    @Override
     protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
             BlockHitResult hitResult) {
         if (!level.isClientSide()) {

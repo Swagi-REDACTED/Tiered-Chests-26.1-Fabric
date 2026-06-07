@@ -11,6 +11,8 @@ public class TieredChests {
 	public static final String MOD_ID = "tiered_chests";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ModConfig CONFIG;
+	public static me.pajic.tiered_chests.config.ClientConfig CLIENT_CONFIG;
+
 
 	public static void onInitialize() {
 		CONFIG = ConfigApiJava.registerAndLoadConfig(ModConfig::new);

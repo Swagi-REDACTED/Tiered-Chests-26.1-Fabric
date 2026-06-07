@@ -104,18 +104,14 @@ public class TieredBarrelBlockEntity extends RandomizableContainerBlockEntity
     protected AbstractContainerMenu createMenu(int syncId, Inventory playerInventory) {
         return new TieredChestMenu(syncId, playerInventory, this, tier, worldPosition,
             TieredChests.CONFIG.getRows(tier.getSerializedName(), true, tier.getBaseRows()),
-            TieredChests.CONFIG.getCols(tier.getSerializedName(), true, tier.getBaseCols()),
-            TieredChests.CONFIG.fancyChests.get()
-        );
+            TieredChests.CONFIG.getCols(tier.getSerializedName(), true, tier.getBaseCols()));
     }
 
     @Override
     public ModNetworking.S2CTieredChestPayload getScreenOpeningData(ServerPlayer player) {
         return new ModNetworking.S2CTieredChestPayload(worldPosition, tier, false,
             TieredChests.CONFIG.getRows(tier.getSerializedName(), true, tier.getBaseRows()),
-            TieredChests.CONFIG.getCols(tier.getSerializedName(), true, tier.getBaseCols()),
-            TieredChests.CONFIG.fancyChests.get()
-        );
+            TieredChests.CONFIG.getCols(tier.getSerializedName(), true, tier.getBaseCols()));
     }
 
     @Override

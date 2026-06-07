@@ -166,8 +166,8 @@ public class TieredChestBlockEntity extends RandomizableContainerBlockEntity
         if (tier != null) {
             return new TieredChestMenu(syncId, playerInventory, this, tier, worldPosition,
                 TieredChests.CONFIG.getRows(tier.getSerializedName(), false, tier.getBaseRows()),
-                TieredChests.CONFIG.getCols(tier.getSerializedName(), false, tier.getBaseCols()),
-                TieredChests.CONFIG.fancyChests.get()
+                                 TieredChests.CONFIG.getCols(tier.getSerializedName(), false, tier.getBaseCols())
+
             );
         }
         return null;
@@ -177,8 +177,7 @@ public class TieredChestBlockEntity extends RandomizableContainerBlockEntity
     public ModNetworking.S2CTieredChestPayload getScreenOpeningData(ServerPlayer player) {
         return new ModNetworking.S2CTieredChestPayload(worldPosition, tier, false, 
             TieredChests.CONFIG.getRows(tier.getSerializedName(), false, tier.getBaseRows()),
-            TieredChests.CONFIG.getCols(tier.getSerializedName(), false, tier.getBaseCols()),
-            TieredChests.CONFIG.fancyChests.get()
+            TieredChests.CONFIG.getCols(tier.getSerializedName(), false, tier.getBaseCols())
         );
     }
 

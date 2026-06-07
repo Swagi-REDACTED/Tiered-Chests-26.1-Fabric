@@ -96,13 +96,13 @@ public class TieredChestRenderer implements BlockEntityRenderer<TieredChestBlock
         else if (state.type == ChestType.RIGHT)
             prefix = "right_";
 
-        boolean overrideOn = TieredChests.CONFIG.texturePackOverride.get();
+        boolean overrideOn = TieredChests.CLIENT_CONFIG.texturePackOverride.get();
         Identifier woodId;
         if (overrideOn) {
             String suffix = state.type == ChestType.LEFT ? "left" : state.type == ChestType.RIGHT ? "right" : "";
             woodId = Identifier.fromNamespaceAndPath("minecraft",
                     "entity/chest/normal" + (suffix.isEmpty() ? "" : "_" + suffix));
-        } else if (TieredChests.CONFIG.fancyChests.get()) {
+        } else if (TieredChests.CLIENT_CONFIG.fancyChests.get()) {
             woodId = state.type == ChestType.SINGLE ? ChestTextureManager.getSingleWoodTexture()
                     : ChestTextureManager.getFancyDoubleTexture(state.type);
         } else {
@@ -115,11 +115,11 @@ public class TieredChestRenderer implements BlockEntityRenderer<TieredChestBlock
 
         // Pass 2: Metal Tier Overlay
         String tierName = state.tier.getSerializedName();
-        String tierSuffix = TieredChests.CONFIG.fancyCorners.get() ? "_tier_fancy" : "_tier";
+        String tierSuffix = TieredChests.CLIENT_CONFIG.fancyCorners.get() ? "_tier_fancy" : "_tier";
         SpriteId tierSprite = new SpriteId(Sheets.CHEST_SHEET,
                 TieredChests.id("entity/chest/" + prefix + tierName + tierSuffix));
         
-        boolean useFancyLock = TieredChests.CONFIG.fancyLocks.get() && !overrideOn;
+        boolean useFancyLock = TieredChests.CLIENT_CONFIG.fancyLocks.get() && !overrideOn;
         
         // Use the no-lock model for the tier overlay if fancy locks are on, so we can overlay the fancy one in pass 3
         ChestModel tierModel = (overrideOn || useFancyLock) ? this.modelsNoLock.select(state.type) : this.models.select(state.type);

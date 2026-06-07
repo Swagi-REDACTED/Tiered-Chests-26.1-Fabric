@@ -28,7 +28,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
     }
 
     public static ParticleResult getTierParticleColor(ChestTier tier, boolean isFancy) {
-        if (TieredChests.CONFIG.texturePackOverride.get() && tier == ChestTier.WOOD) {
+        if (TieredChests.CLIENT_CONFIG.texturePackOverride.get() && tier == ChestTier.WOOD) {
             return new ParticleResult(-1, false);
         }
 
@@ -75,9 +75,9 @@ public class FabricClientEntrypoint implements ClientModInitializer {
         if (tier == null)
             return false;
 
-        boolean isFancy = TieredChests.CONFIG.fancyChests.get() || TieredChests.CONFIG.fancyBarrels.get();
+        boolean isFancy = TieredChests.CLIENT_CONFIG.fancyChests.get() || TieredChests.CLIENT_CONFIG.fancyBarrels.get();
         if (tier == ChestTier.WOOD && block instanceof me.pajic.tiered_chests.block.TieredBarrelBlock) {
-            isFancy = TieredChests.CONFIG.fancyBarrels.get();
+            isFancy = TieredChests.CLIENT_CONFIG.fancyBarrels.get();
         }
 
         return getTierParticleColor(tier, isFancy).wash();
@@ -86,6 +86,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         try {
+            TieredChests.CLIENT_CONFIG = me.fzzyhmstrs.fzzy_config.api.ConfigApiJava.registerAndLoadConfig(me.pajic.tiered_chests.config.ClientConfig::new, me.fzzyhmstrs.fzzy_config.api.RegisterType.CLIENT);
             TieredChests.LOGGER.info("Initializing Tiered Chests Client...");
             MenuScreens.register(ModMenuTypes.TIERED_CHEST_MENU, TieredChestScreen::new);
 
@@ -106,10 +107,10 @@ public class FabricClientEntrypoint implements ClientModInitializer {
                 Block barrel = ModBlocks.TIERED_BARRELS.get(tier);
 
                 BlockColorRegistry.register(List.of(state -> {
-                    boolean isFancy = TieredChests.CONFIG.fancyChests.get() || TieredChests.CONFIG.fancyBarrels.get();
+                    boolean isFancy = TieredChests.CLIENT_CONFIG.fancyChests.get() || TieredChests.CLIENT_CONFIG.fancyBarrels.get();
                     if (tier == ChestTier.WOOD
                             && state.getBlock() instanceof me.pajic.tiered_chests.block.TieredBarrelBlock) {
-                        isFancy = TieredChests.CONFIG.fancyBarrels.get();
+                        isFancy = TieredChests.CLIENT_CONFIG.fancyBarrels.get();
                     }
                     return getTierParticleColor(tier, isFancy).color();
                 }), chest, barrel);

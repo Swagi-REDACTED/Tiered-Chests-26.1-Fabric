@@ -35,18 +35,10 @@ public class ModConfig extends me.fzzyhmstrs.fzzy_config.config.Config {
     }
 
     public ChestConfigs chestConfigs = new ChestConfigs();
-    public ChestConfigs barrelConfigs = new ChestConfigs();
-    
-    public ValidatedBoolean fancyChests = new ValidatedBoolean(true);
-    public ValidatedBoolean fancyBarrels = new ValidatedBoolean(true);
-    public ValidatedBoolean fancyLocks = new ValidatedBoolean(true);
-    public ValidatedBoolean fancyCorners = new ValidatedBoolean(true);
-    public ValidatedBoolean matchGuiColors = new ValidatedBoolean(false);
-    public ValidatedBoolean texturePackOverride = new ValidatedBoolean(false);
+	public ChestConfigs barrelConfigs = new ChestConfigs();
+	
+	// Fzzy Config permission handling: Always require OP level 2 for server settings
 
-    // Removed manual instance logic, now handled in TieredChests.java
-
-    // Fzzy Config permission handling: Always require OP level 2 for server settings
     @Override
     public int defaultPermLevel() {
         return 2;

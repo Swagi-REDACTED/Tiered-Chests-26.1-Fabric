@@ -27,24 +27,22 @@ public class TieredChestMenu extends AbstractContainerMenu {
     private final int columns;
     private final int imageWidth;
     private final int imageHeight;
-    private final boolean fancyChests;
 
     // Client-side constructor
     public TieredChestMenu(int containerId, Inventory inventory, ModNetworking.S2CTieredChestPayload payload) {
         this(containerId, inventory, new SimpleContainer(payload.rows() * payload.cols()), payload.tier(),
-                payload.pos(), payload.rows(), payload.cols(), payload.fancyChests());
+                payload.pos(), payload.rows(), payload.cols());
     }
 
     // Main constructor
     public TieredChestMenu(int containerId, Inventory inventory, Container container, ChestTier tier, BlockPos pos,
-            int rows, int columns, boolean fancyChests) {
+            int rows, int columns) {
         super(ModMenuTypes.TIERED_CHEST_MENU, containerId);
         this.tier = tier;
         this.pos = pos;
         this.container = container;
         this.rows = rows;
         this.columns = columns;
-        this.fancyChests = fancyChests;
 
         int chestWidth = GUI_PADDING * 2 + this.columns * SLOT_SIZE;
         this.imageWidth = Math.max(chestWidth, PLAYER_INV_WIDTH);
@@ -143,9 +141,5 @@ public class TieredChestMenu extends AbstractContainerMenu {
 
     public Container getContainer() {
         return container;
-    }
-
-    public boolean isFancyChests() {
-        return fancyChests;
     }
 }

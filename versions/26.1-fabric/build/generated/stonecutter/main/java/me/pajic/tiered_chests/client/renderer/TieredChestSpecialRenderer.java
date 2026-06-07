@@ -55,11 +55,11 @@ public class TieredChestSpecialRenderer implements SpecialModelRenderer<Integer>
     public @Nullable Integer extractArgument(ItemStack stack) {
         // Encode booleans into a single unique integer state
         int state = 0;
-        if (TieredChests.CONFIG.texturePackOverride.get())
+        if (TieredChests.CLIENT_CONFIG.texturePackOverride.get())
             state |= 1;
-        if (TieredChests.CONFIG.fancyChests.get())
+        if (TieredChests.CLIENT_CONFIG.fancyChests.get())
             state |= 2;
-        if (TieredChests.CONFIG.fancyLocks.get())
+        if (TieredChests.CLIENT_CONFIG.fancyLocks.get())
             state |= 4;
         return state;
     }
@@ -75,14 +75,14 @@ public class TieredChestSpecialRenderer implements SpecialModelRenderer<Integer>
             int outlineColor) {
         float openness = 0.0f; // Static for item
 
-        boolean overrideOn = TieredChests.CONFIG.texturePackOverride.get();
-        boolean useFancyLock = TieredChests.CONFIG.fancyLocks.get() && !overrideOn;
+        boolean overrideOn = TieredChests.CLIENT_CONFIG.texturePackOverride.get();
+        boolean useFancyLock = TieredChests.CLIENT_CONFIG.fancyLocks.get() && !overrideOn;
 
         // Pass 1: Base Wood
         Identifier woodId;
         if (overrideOn) {
             woodId = Identifier.fromNamespaceAndPath("minecraft", "entity/chest/normal");
-        } else if (TieredChests.CONFIG.fancyChests.get()) {
+        } else if (TieredChests.CLIENT_CONFIG.fancyChests.get()) {
             woodId = ChestTextureManager.getSingleWoodTexture();
         } else {
             woodId = TieredChests.id("entity/chest/wood");

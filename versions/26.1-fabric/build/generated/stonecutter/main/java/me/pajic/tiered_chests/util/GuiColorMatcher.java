@@ -18,7 +18,7 @@ public class GuiColorMatcher {
 
 
     public static Identifier getMatchedTexture() {
-        if (!TieredChests.CONFIG.matchGuiColors.get()) {
+        if (!TieredChests.CLIENT_CONFIG.matchGuiColors.get()) {
             return TieredChests.id("textures/gui/generic_54_blank.png");
         }
 
@@ -92,7 +92,7 @@ public class GuiColorMatcher {
     }
 
     public static boolean isMatchingEnabled() {
-        return TieredChests.CONFIG.matchGuiColors.get() && matchedTextureId != null;
+        return TieredChests.CLIENT_CONFIG.matchGuiColors.get() && matchedTextureId != null;
     }
 
     private static double colorDistance(int c1, int c2) {

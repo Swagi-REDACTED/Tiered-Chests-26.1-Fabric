@@ -233,9 +233,9 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
                         return new ModNetworking.S2CTieredChestPayload(first.getBlockPos(), first.getTier(), true,
                                 TieredChests.CONFIG.getRows(first.getTier().getSerializedName(), false,
                                         first.getTier().getBaseRows()) * 2,
-                                TieredChests.CONFIG.getCols(first.getTier().getSerializedName(), false,
-                                        first.getTier().getBaseCols()),
-                                TieredChests.CONFIG.fancyChests.get());
+                                 TieredChests.CONFIG.getCols(first.getTier().getSerializedName(), false,
+                                         first.getTier().getBaseCols()));
+
                     }
                     return null;
                 }
@@ -251,9 +251,9 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
                                 first.getBlockPos(),
                                 TieredChests.CONFIG.getRows(first.getTier().getSerializedName(), false,
                                         first.getTier().getBaseRows()) * 2,
-                                TieredChests.CONFIG.getCols(first.getTier().getSerializedName(), false,
-                                        first.getTier().getBaseCols()),
-                                TieredChests.CONFIG.fancyChests.get());
+                                 TieredChests.CONFIG.getCols(first.getTier().getSerializedName(), false,
+                                         first.getTier().getBaseCols()));
+
                     } else {
                         return null;
                     }

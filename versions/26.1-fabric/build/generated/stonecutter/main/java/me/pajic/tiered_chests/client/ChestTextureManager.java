@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.properties.ChestType;
 public class ChestTextureManager {
 
     public static Identifier getSingleWoodTexture() {
-        return TieredChests.CONFIG.fancyChests.get() ? TieredChests.id("entity/chest/wood2") : TieredChests.id("entity/chest/wood");
+        return TieredChests.CLIENT_CONFIG.fancyChests.get() ? TieredChests.id("entity/chest/wood2") : TieredChests.id("entity/chest/wood");
     }
 
     public static Identifier getFancyDoubleTexture(ChestType type) {

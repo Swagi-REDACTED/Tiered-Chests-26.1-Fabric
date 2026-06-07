@@ -98,7 +98,7 @@ public class TieredBarrelRenderer
 
                 String tierName = state.tier.getSerializedName();
 
-                boolean overrideOn = TieredChests.CONFIG.texturePackOverride.get();
+                boolean overrideOn = TieredChests.CLIENT_CONFIG.texturePackOverride.get();
                 Identifier woodTop;
                 Identifier woodBottom;
                 Identifier woodSide;
@@ -108,7 +108,7 @@ public class TieredBarrelRenderer
                                         "block/barrel_top" + (state.open ? "_open" : ""));
                         woodBottom = Identifier.fromNamespaceAndPath("minecraft", "block/barrel_bottom");
                         woodSide = Identifier.fromNamespaceAndPath("minecraft", "block/barrel_side");
-                } else if (TieredChests.CONFIG.fancyBarrels.get()) {
+                } else if (TieredChests.CLIENT_CONFIG.fancyBarrels.get()) {
                         woodTop = TieredChests.id("block/wood_barrel_top" + (state.open ? "_open" : "") + "_fancy");
                         woodBottom = TieredChests.id("block/wood_barrel_bottom_fancy");
                         woodSide = TieredChests.id("block/wood_barrel_side_fancy");
@@ -118,7 +118,7 @@ public class TieredBarrelRenderer
                         woodSide = TieredChests.id("block/wood_barrel_side");
                 }
 
-                String suffix = TieredChests.CONFIG.fancyCorners.get() ? "_fancy" : "";
+                String suffix = TieredChests.CLIENT_CONFIG.fancyCorners.get() ? "_fancy" : "";
                 Identifier tierTop = TieredChests.id("block/" + tierName + "_barrel_top" + suffix);
                 Identifier tierBottom = TieredChests.id("block/" + tierName + "_barrel_bottom" + suffix);
                 Identifier tierSide = TieredChests.id("block/" + tierName + "_barrel_side" + suffix);

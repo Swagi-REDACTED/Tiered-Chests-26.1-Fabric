@@ -15,7 +15,7 @@ public class ModNetworking {
 
     public static final Identifier TIERED_CHEST_SCREEN = TieredChests.id("tiered_chest_screen");
 
-    public record S2CTieredChestPayload(BlockPos pos, ChestTier tier, boolean isDouble, int rows, int cols, boolean fancyChests) implements CustomPacketPayload {
+    public record S2CTieredChestPayload(BlockPos pos, ChestTier tier, boolean isDouble, int rows, int cols) implements CustomPacketPayload {
         public static final Type<S2CTieredChestPayload> TYPE = new Type<>(TIERED_CHEST_SCREEN);
         
         public static final StreamCodec<FriendlyByteBuf, S2CTieredChestPayload> CODEC = StreamCodec.composite(
@@ -24,7 +24,6 @@ public class ModNetworking {
             ByteBufCodecs.BOOL, S2CTieredChestPayload::isDouble,
             ByteBufCodecs.VAR_INT, S2CTieredChestPayload::rows,
             ByteBufCodecs.VAR_INT, S2CTieredChestPayload::cols,
-            ByteBufCodecs.BOOL, S2CTieredChestPayload::fancyChests,
             S2CTieredChestPayload::new
         );
 

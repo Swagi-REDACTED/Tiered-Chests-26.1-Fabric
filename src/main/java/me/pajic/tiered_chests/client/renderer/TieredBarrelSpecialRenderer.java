@@ -27,9 +27,9 @@ public class TieredBarrelSpecialRenderer implements SpecialModelRenderer<Integer
     @Override
     public @Nullable Integer extractArgument(ItemStack stack) {
         int state = 0;
-        if (TieredChests.CONFIG.texturePackOverride.get())
+        if (TieredChests.CLIENT_CONFIG.texturePackOverride.get())
             state |= 1;
-        if (TieredChests.CONFIG.fancyBarrels.get())
+        if (TieredChests.CLIENT_CONFIG.fancyBarrels.get())
             state |= 2;
         return state;
     }
@@ -40,7 +40,7 @@ public class TieredBarrelSpecialRenderer implements SpecialModelRenderer<Integer
         poseStack.pushPose();
 
         String tierName = tier.getSerializedName();
-        boolean overrideOn = TieredChests.CONFIG.texturePackOverride.get();
+        boolean overrideOn = TieredChests.CLIENT_CONFIG.texturePackOverride.get();
         Identifier woodTop;
         Identifier woodBottom;
         Identifier woodSide;
@@ -49,7 +49,7 @@ public class TieredBarrelSpecialRenderer implements SpecialModelRenderer<Integer
             woodTop = Identifier.fromNamespaceAndPath("minecraft", "textures/block/barrel_top.png");
             woodBottom = Identifier.fromNamespaceAndPath("minecraft", "textures/block/barrel_bottom.png");
             woodSide = Identifier.fromNamespaceAndPath("minecraft", "textures/block/barrel_side.png");
-        } else if (TieredChests.CONFIG.fancyBarrels.get()) {
+        } else if (TieredChests.CLIENT_CONFIG.fancyBarrels.get()) {
             woodTop = TieredChests.id("textures/block/wood_barrel_top_fancy.png");
             woodBottom = TieredChests.id("textures/block/wood_barrel_bottom_fancy.png");
             woodSide = TieredChests.id("textures/block/wood_barrel_side_fancy.png");

@@ -1,6 +1,8 @@
 package me.pajic.tiered_chests.mixin.client;
 
+import me.pajic.tiered_chests.TieredChests;
 import me.pajic.tiered_chests.ui.ScaleState;
+
 import me.pajic.tiered_chests.ui.TieredChestScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
@@ -20,7 +22,7 @@ public class MinecraftMixin {
         boolean wasTiered = current instanceof TieredChestScreen;
         boolean isTiered = screen instanceof TieredChestScreen;
         
-        if (wasTiered != isTiered && client.getWindow() != null) {
+        if (wasTiered != isTiered && client.getWindow() != null && TieredChests.CLIENT_CONFIG.autoGuiRescaling.get()) {
             if (isTiered) {
                 int guiScale = client.options.guiScale().get();
                 boolean forceUnicode = client.options.forceUnicodeFont().get();

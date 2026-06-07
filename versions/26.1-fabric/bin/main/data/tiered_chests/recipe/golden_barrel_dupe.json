@@ -1,0 +1,17 @@
+{
+  "key": {
+    "#": "minecraft:gold_ingot",
+    "C": "tiered_chests:golden_barrel"
+  },
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "tiered_chests:golden_barrel"
+  },
+  "type": "tiered_chests:upgrade"
+}

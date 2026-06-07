@@ -1,0 +1,15 @@
+{
+  "type": "tiered_chests:upgrade",
+  "pattern": [
+    "MMM",
+    "MCM",
+    "MMM"
+  ],
+  "key": {
+    "M": "minecraft:diamond",
+    "C": "tiered_chests:shulker_infused_golden_barrel"
+  },
+  "result": {
+    "id": "tiered_chests:shulker_infused_diamond_barrel"
+  }
+}

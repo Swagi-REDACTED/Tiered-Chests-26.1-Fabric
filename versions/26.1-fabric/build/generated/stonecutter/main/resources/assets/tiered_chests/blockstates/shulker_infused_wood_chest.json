@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "tiered_chests:block/wood_chest"
+    }
+  }
+}

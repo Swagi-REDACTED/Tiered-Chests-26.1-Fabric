@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MPM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:gold_ingot"
+    },
+    "P": {
+      "item": "tiered_chests:iron_chest"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:golden_chest"
+  }
+}

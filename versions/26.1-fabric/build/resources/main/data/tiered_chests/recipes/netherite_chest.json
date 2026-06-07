@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "MMM",
+    "MPM",
+    "MMM"
+  ],
+  "key": {
+    "M": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "P": {
+      "item": "tiered_chests:diamond_chest"
+    }
+  },
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:netherite_chest"
+  }
+}

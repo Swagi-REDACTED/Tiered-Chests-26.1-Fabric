@@ -1,0 +1,16 @@
+{
+  "key": {
+    "C": "minecraft:chest",
+    "M": "#minecraft:planks"
+  },
+  "pattern": [
+    "MMM",
+    "MCM",
+    "MMM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:wood_chest"
+  },
+  "type": "tiered_chests:upgrade"
+}

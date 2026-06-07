@@ -1,0 +1,17 @@
+{
+  "key": {
+    "#": "#minecraft:planks",
+    "C": "tiered_chests:wood_barrel"
+  },
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 2,
+    "id": "tiered_chests:wood_barrel"
+  },
+  "type": "tiered_chests:upgrade"
+}

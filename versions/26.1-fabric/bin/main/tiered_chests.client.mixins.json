@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "me.pajic.tiered_chests.mixin.client",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "SpriteLoaderMixin",
+    "TerrainParticleMixin",
+    "SpriteContentsAccessor",
+    "MinecraftAccessor",
+    "EntityMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

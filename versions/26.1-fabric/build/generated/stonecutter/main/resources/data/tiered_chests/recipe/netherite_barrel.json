@@ -1,0 +1,18 @@
+{
+  "key": {
+    "#": "minecraft:netherite_ingot",
+    "D": "minecraft:diamond",
+    "C": "tiered_chests:diamond_barrel"
+  },
+  "category": "misc",
+  "pattern": [
+    "D#D",
+    "#C#",
+    "D#D"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:netherite_barrel"
+  },
+  "type": "minecraft:crafting_shaped"
+}

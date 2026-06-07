@@ -1,0 +1,15 @@
+{
+  "type": "tiered_chests:upgrade",
+  "pattern": [
+    " S ",
+    " C ",
+    " S "
+  ],
+  "key": {
+    "S": "minecraft:shulker_shell",
+    "C": "tiered_chests:wood_barrel"
+  },
+  "result": {
+    "id": "tiered_chests:shulker_infused_wood_barrel"
+  }
+}

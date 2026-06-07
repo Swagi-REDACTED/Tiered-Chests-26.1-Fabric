@@ -1,0 +1,15 @@
+{
+  "type": "tiered_chests:upgrade",
+  "pattern": [
+    " S ",
+    " C ",
+    " S "
+  ],
+  "key": {
+    "S": "minecraft:shulker_shell",
+    "C": "tiered_chests:netherite_chest"
+  },
+  "result": {
+    "id": "tiered_chests:shulker_infused_netherite_chest"
+  }
+}

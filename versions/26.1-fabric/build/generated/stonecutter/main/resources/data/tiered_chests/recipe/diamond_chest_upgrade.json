@@ -1,0 +1,16 @@
+{
+  "key": {
+    "C": "tiered_chests:golden_chest",
+    "M": "minecraft:diamond"
+  },
+  "pattern": [
+    "MMM",
+    "MCM",
+    "MMM"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:diamond_chest"
+  },
+  "type": "tiered_chests:upgrade"
+}

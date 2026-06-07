@@ -1,0 +1,17 @@
+{
+  "key": {
+    "#": "minecraft:diamond",
+    "C": "tiered_chests:golden_chest"
+  },
+  "category": "misc",
+  "pattern": [
+    "###",
+    "#C#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tiered_chests:diamond_chest"
+  },
+  "type": "minecraft:crafting_shaped"
+}

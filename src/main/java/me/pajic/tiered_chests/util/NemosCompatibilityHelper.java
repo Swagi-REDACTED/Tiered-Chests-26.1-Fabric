@@ -15,20 +15,29 @@ public class NemosCompatibilityHelper {
         if (!FabricLoader.getInstance().isModLoaded("nemos_inventory_sorting")) return;
 
         try {
-            // Load necessary classes
-            Class<?> configServiceClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.config.service.ConfigService");
+            boolean isNewVersion = false;
+            Class<?> configServiceClass;
+            
+            try {
+                configServiceClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.service.config.ConfigService");
+                isNewVersion = true;
+            } catch (ClassNotFoundException e) {
+                configServiceClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.config.service.ConfigService");
+            }
+
             Class<?> sortButtonFactoryClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.factory.SortButtonFactory");
             Class<?> moveSameButtonFactoryClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.factory.MoveSameButtonFactory");
             Class<?> moveAllButtonFactoryClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.factory.MoveAllButtonFactory");
             Class<?> dropAllButtonFactoryClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.factory.DropAllButtonFactory");
-            Class<?> offsetClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Offset");
-            Class<?> sizeClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Size");
-            Class<?> positionClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Position");
-            Class<?> slotRangeClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.SlotRange");
-            Class<?> buttonCreatorClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.factory.ButtonCreator");
 
             // Get instances and config
-            Object configService = configServiceClass.getMethod("getInstance").invoke(null);
+            Object configService;
+            if (isNewVersion) {
+                configService = configServiceClass.getField("INSTANCE").get(null);
+            } else {
+                configService = configServiceClass.getMethod("getInstance").invoke(null);
+            }
+            
             List<?> configs = (List<?>) configServiceClass.getMethod("readOrGetDefaultComponentConfigs").invoke(configService);
 
             // Button factories
@@ -43,25 +52,34 @@ public class NemosCompatibilityHelper {
             int containerSize = inventoryEndIndex - 27;
 
             // Define button setups
-            createNemoButton(screen, configs, configService, "sort_storage_container", sortFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "move_same_storage_container", moveSameFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "move_all_storage_container", moveAllFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "drop_all_storage_container", dropAllFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
+            createNemoButton(screen, configs, configService, "sort_storage_container", sortFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "move_same_storage_container", moveSameFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "move_all_storage_container", moveAllFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "drop_all_storage_container", dropAllFactory, 5, false, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
 
             int inventoryY = inventoryLabelY - 2;
-            createNemoButton(screen, configs, configService, "sort_storage_container_inventory", sortFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "move_same_storage_container_inventory", moveSameFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "move_all_storage_container_inventory", moveAllFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
-            createNemoButton(screen, configs, configService, "drop_all_storage_container_inventory", dropAllFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth);
+            createNemoButton(screen, configs, configService, "sort_storage_container_inventory", sortFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "move_same_storage_container_inventory", moveSameFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "move_all_storage_container_inventory", moveAllFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
+            createNemoButton(screen, configs, configService, "drop_all_storage_container_inventory", dropAllFactory, inventoryY, true, containerSize, inventoryEndIndex, leftPos, topPos, imageWidth, isNewVersion);
 
         } catch (Exception e) {
             TieredChests.LOGGER.error("Failed to integrate with Nemo's Inventory Sorting", e);
         }
     }
 
-    private static void createNemoButton(AbstractContainerScreen<?> screen, List<?> configs, Object configService, String componentName, Object factory, int defaultY, boolean isInventory, int containerSize, int inventoryEndIndex, int leftPos, int topPos, int imageWidth) throws Exception {
-        Method getCfgMethod = configService.getClass().getMethod("getOrDefaultComponentConfig", List.class, String.class);
-        Object optionalCfg = getCfgMethod.invoke(configService, configs, componentName);
+    private static void createNemoButton(AbstractContainerScreen<?> screen, List<?> configs, Object configService, String componentName, Object factory, int defaultY, boolean isInventory, int containerSize, int inventoryEndIndex, int leftPos, int topPos, int imageWidth, boolean isNewVersion) throws Exception {
+        Object optionalCfg;
+        if (isNewVersion) {
+            Class<?> configIdClass = Class.forName("com.nemonotfound.nemos.inventory.sorting.enums.config.ConfigId");
+            @SuppressWarnings({ "unchecked", "rawtypes" })
+            Object enumValue = Enum.valueOf((Class<Enum>) configIdClass, componentName.toUpperCase());
+            Method getCfgMethod = configService.getClass().getMethod("getOrDefault", List.class, configIdClass);
+            optionalCfg = getCfgMethod.invoke(configService, configs, enumValue);
+        } else {
+            Method getCfgMethod = configService.getClass().getMethod("getOrDefaultComponentConfig", List.class, String.class);
+            optionalCfg = getCfgMethod.invoke(configService, configs, componentName);
+        }
         
         Class<?> optionalClass = Class.forName("java.util.Optional");
         if (!(boolean) optionalClass.getMethod("isPresent").invoke(optionalCfg)) return;
@@ -81,22 +99,24 @@ public class NemosCompatibilityHelper {
         int width = (int) config.getClass().getMethod("width").invoke(config);
         int height = (int) config.getClass().getMethod("height").invoke(config);
 
+        String modelPackage = isNewVersion ? "com.nemonotfound.nemos.inventory.sorting.models." : "com.nemonotfound.nemos.inventory.sorting.model.";
+
         // Create SlotRange
         int start = isInventory ? containerSize : 0;
         int end = isInventory ? inventoryEndIndex : containerSize;
-        Constructor<?> slotRangeCtor = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.SlotRange").getConstructor(int.class, int.class);
+        Constructor<?> slotRangeCtor = Class.forName(modelPackage + "SlotRange").getConstructor(int.class, int.class);
         Object slotRange = slotRangeCtor.newInstance(start, end);
 
         // Create Position
-        Constructor<?> positionCtor = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Position").getConstructor(int.class, int.class);
+        Constructor<?> positionCtor = Class.forName(modelPackage + "Position").getConstructor(int.class, int.class);
         Object position = positionCtor.newInstance(leftPos, topPos);
 
         // Create Offset
-        Constructor<?> offsetCtor = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Offset").getConstructor(int.class, int.class);
+        Constructor<?> offsetCtor = Class.forName(modelPackage + "Offset").getConstructor(int.class, int.class);
         Object offset = offsetCtor.newInstance(xOffset, yOffset);
 
         // Create Size
-        Constructor<?> sizeCtor = Class.forName("com.nemonotfound.nemos.inventory.sorting.model.Size").getConstructor(int.class, int.class, int.class);
+        Constructor<?> sizeCtor = Class.forName(modelPackage + "Size").getConstructor(int.class, int.class, int.class);
         Object size = sizeCtor.newInstance(width, height, 11); // 11 is Nemo's default button size
 
         // Create Button

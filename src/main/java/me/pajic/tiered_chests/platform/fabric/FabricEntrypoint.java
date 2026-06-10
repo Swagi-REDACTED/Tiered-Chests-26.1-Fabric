@@ -24,6 +24,9 @@ import net.minecraft.world.Container;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.ItemStack;
+import net.fabricmc.fabric.api.event.player.UseBlockCallback;
+import net.minecraft.world.InteractionResult;
+import me.pajic.tiered_chests.block.TieredBarrelBlock;
  
 public class FabricEntrypoint implements ModInitializer {
     public static final ResourceKey<CreativeModeTab> TIERED_CHESTS_TAB_KEY = ResourceKey.create(Registries.CREATIVE_MODE_TAB, TieredChests.id("tiered_chests_tab"));
@@ -40,6 +43,7 @@ public class FabricEntrypoint implements ModInitializer {
  
             // Register networking
             PayloadTypeRegistry.clientboundPlay().register(ModNetworking.S2CTieredChestPayload.TYPE, ModNetworking.S2CTieredChestPayload.CODEC);
+
  
             Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, TIERED_CHESTS_TAB_KEY, CreativeModeTab.builder(CreativeModeTab.Row.TOP, 7)
                 .title(Component.translatable("itemGroup.tiered_chests"))

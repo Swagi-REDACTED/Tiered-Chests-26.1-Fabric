@@ -94,12 +94,16 @@ public class TieredBarrelBlock extends BaseEntityBlock {
                 if (!(state.getBlock() instanceof ShulkerInfusedTieredBarrelBlock)) {
                     if (!level.isClientSide()) {
                         net.minecraft.core.component.DataComponentMap components = tieredBe.collectComponents();
+                        tieredBe.clearContent();
+                        
                         BlockState newState = ModBlocks.SHULKER_INFUSED_TIERED_BARRELS.get(tier).withPropertiesOf(state);
                         level.setBlock(pos, newState, 3);
+                        
                         BlockEntity newBlockEntity = level.getBlockEntity(pos);
-                        if (newBlockEntity != null) {
-                            newBlockEntity.setComponents(components);
+                        if (newBlockEntity instanceof me.pajic.tiered_chests.block.entity.TieredBarrelBlockEntity newTieredBe) {
+                            newTieredBe.applyComponents(components, net.minecraft.core.component.DataComponentPatch.EMPTY);
                         }
+                        
                         if (!player.getAbilities().instabuild) {
                             stack.shrink(2);
                         }

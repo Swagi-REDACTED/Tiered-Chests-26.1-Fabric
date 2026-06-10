@@ -105,6 +105,8 @@ public class FabricClientEntrypoint implements ClientModInitializer {
             for (ChestTier tier : ChestTier.values()) {
                 Block chest = ModBlocks.TIERED_CHESTS.get(tier);
                 Block barrel = ModBlocks.TIERED_BARRELS.get(tier);
+                Block shulkerChest = ModBlocks.SHULKER_INFUSED_TIERED_CHESTS.get(tier);
+                Block shulkerBarrel = ModBlocks.SHULKER_INFUSED_TIERED_BARRELS.get(tier);
 
                 BlockColorRegistry.register(List.of(state -> {
                     boolean isFancy = TieredChests.CLIENT_CONFIG.fancyChests.get() || TieredChests.CLIENT_CONFIG.fancyBarrels.get();
@@ -113,7 +115,7 @@ public class FabricClientEntrypoint implements ClientModInitializer {
                         isFancy = TieredChests.CLIENT_CONFIG.fancyBarrels.get();
                     }
                     return getTierParticleColor(tier, isFancy).color();
-                }), chest, barrel);
+                }), chest, barrel, shulkerChest, shulkerBarrel);
             }
 
             net.fabricmc.fabric.api.resource.v1.ResourceLoader.get(net.minecraft.server.packs.PackType.CLIENT_RESOURCES)

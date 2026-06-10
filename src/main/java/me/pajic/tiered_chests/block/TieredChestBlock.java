@@ -138,12 +138,16 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
                 if (!(state.getBlock() instanceof ShulkerInfusedTieredChestBlock)) {
                     if (!level.isClientSide()) {
                         net.minecraft.core.component.DataComponentMap components = tieredBe.collectComponents();
+                        tieredBe.clearContent();
+                        
                         BlockState newState = ModBlocks.SHULKER_INFUSED_TIERED_CHESTS.get(tier).withPropertiesOf(state);
                         level.setBlock(pos, newState, 3);
+                        
                         BlockEntity newBlockEntity = level.getBlockEntity(pos);
-                        if (newBlockEntity != null) {
-                            newBlockEntity.setComponents(components);
+                        if (newBlockEntity instanceof me.pajic.tiered_chests.block.entity.TieredChestBlockEntity newTieredBe) {
+                            newTieredBe.applyComponents(components, net.minecraft.core.component.DataComponentPatch.EMPTY);
                         }
+                        
                         if (!player.getAbilities().instabuild) {
                             stack.shrink(2);
                         }
@@ -188,15 +192,42 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
             predicate = TieredChestBlock::isChestBlockedAt;
         }
 
-        return DoubleBlockCombiner.combineWithNeigbour(
-                ModBlockEntities.TIERED_CHESTS.get(tier),
-                TieredChestBlock::getBlockType,
-                TieredChestBlock::getConnectedDirection,
-                FACING,
-                state,
-                level,
-                pos,
-                predicate);
+        net.minecraft.world.level.block.entity.BlockEntityType<TieredChestBlockEntity> entityType = ModBlockEntities.TIERED_CHESTS.get(tier);
+        TieredChestBlockEntity blockEntity = entityType.getBlockEntity(level, pos);
+        if (blockEntity == null) {
+            return DoubleBlockCombiner.Combiner::acceptNone;
+        } else if (predicate.test(level, pos)) {
+            return DoubleBlockCombiner.Combiner::acceptNone;
+        } else {
+            DoubleBlockCombiner.BlockType type = getBlockType(state);
+            boolean single = type == DoubleBlockCombiner.BlockType.SINGLE;
+            boolean isFirst = type == DoubleBlockCombiner.BlockType.FIRST;
+            if (single) {
+                return new DoubleBlockCombiner.NeighborCombineResult.Single<>(blockEntity);
+            } else {
+                BlockPos neighborPos = pos.relative(getConnectedDirection(state));
+                BlockState neighbourState = level.getBlockState(neighborPos);
+                if (this.chestCanConnectTo(neighbourState)) {
+                    DoubleBlockCombiner.BlockType neighbourType = getBlockType(neighbourState);
+                    if (neighbourType != DoubleBlockCombiner.BlockType.SINGLE
+                        && type != neighbourType
+                        && neighbourState.getValue(FACING) == state.getValue(FACING)) {
+                        if (predicate.test(level, neighborPos)) {
+                            return DoubleBlockCombiner.Combiner::acceptNone;
+                        }
+
+                        TieredChestBlockEntity neighbour = entityType.getBlockEntity(level, neighborPos);
+                        if (neighbour != null) {
+                            TieredChestBlockEntity first = isFirst ? blockEntity : neighbour;
+                            TieredChestBlockEntity second = isFirst ? neighbour : blockEntity;
+                            return new DoubleBlockCombiner.NeighborCombineResult.Double<>(first, second);
+                        }
+                    }
+                }
+
+                return new DoubleBlockCombiner.NeighborCombineResult.Single<>(blockEntity);
+            }
+        }
     }
 
     public static DoubleBlockCombiner.BlockType getBlockType(BlockState state) {
@@ -377,7 +408,7 @@ public class TieredChestBlock extends BaseEntityBlock implements EntityBlock, Si
     }
 
     public boolean chestCanConnectTo(BlockState blockState) {
-        return blockState.is(this);
+        return blockState.getBlock() instanceof TieredChestBlock && ((TieredChestBlock)blockState.getBlock()).getTier() == this.getTier();
     }
 
     @Override

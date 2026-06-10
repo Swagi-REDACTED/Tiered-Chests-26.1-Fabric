@@ -6,7 +6,8 @@
   "mixins": [
     "ShapedRecipeMixin",
     "NormalCraftingRecipeMixin",
-    "ItemStackMixin"
+    "ItemStackMixin",
+    "PlayerMixin"
   ],
   "injectors": {
     "defaultRequire": 1
